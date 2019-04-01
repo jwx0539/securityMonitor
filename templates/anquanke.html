@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>安全客</legend>
+</fieldset>
+<div class="layui-tab">
+  <ul class="layui-tab-title">
+    <li class="layui-this">今日推送</li>
+    <li>历史推送</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">
+       <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>来源</th>
+        <th>预警链接</th>
+        <th>预警内容</th>
+      </tr> 
+    </thead>
+    <tbody>
+      {% for response in responses %}
+     <tr>
+       <td>{{ response.time}}</td>
+       <td>{{ response.from}}</td>
+       <td>{{ response.link}}</td>
+       <td>{{ response.content}}</td>
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+    </div>
+    <div class="layui-tab-item">
+       <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>来源</th>
+        <th>预警链接</th>
+        <th>预警内容</th>
+      </tr> 
+    </thead>
+    <tbody>
+      {% for all_response in all_responses %}
+     <tr>
+       <td>{{ all_response.time}}</td>
+       <td>{{ all_response.from}}</td>
+       <td>{{ all_response.link}}</td>
+       <td>{{ all_response.content}}</td>
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

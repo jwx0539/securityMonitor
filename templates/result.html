@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<ul class="layui-tab-title">
+    <li class="layui-this">今日推送</li>
+    <li>历史推送</li>
+  </ul>
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>查询结果</legend>
+  </fieldset>
+  <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>来源</th>
+        <th>预警链接</th>
+        <th>预警内容</th>
+      </tr> 
+    </thead>
+    <tbody>
+     {% for wordlist in wordlists %}
+     <tr>
+       <td>{{ wordlist.time}}</td>
+       <td>{{ wordlist.from}}</td>
+       <td>{{ wordlist.link}}</td>
+       <td>{{ wordlist.content}}</td>
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

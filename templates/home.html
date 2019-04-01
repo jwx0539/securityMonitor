@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block body_block %}<!DOCTYPE html>
+<h1 align="center" style="margin-top: 30px;">Welcome to Inspect Vulns System </h1>
+<h2 align="center" style="margin-top: 30px;">监控总览 </h2>
+<script src="http://echarts.baidu.com/dist/echarts.js"></script>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>收录数据统计</legend>
+</fieldset>   
+ <div id="main" style="width: 600px;height:400px; float: left;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var echartsPie;
+   	
+        var jsons = [
+                {value:{{data_len.wechat_len}},name:'WeChat'},
+                {value:{{data_len.deepweb_len}},name:'暗网'},
+                {value:{{data_len.cve_len}},name:'CVE'},
+                {value:{{data_len.anquanke_len}},name:'安全客'},
+                {value:{{data_len.seebug_len}},name:'Seebug'}
+                ];
+        var options = {
+                title : {
+                    text: '监控数据总数统计',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} 条"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:['WeChat','暗网','CVE','安全客','Seebug']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {
+                            show: true, 
+                            type: ['pie', 'funnel'],
+                            option: {
+                                funnel: {
+                                    x: '25%',
+                                    width: '50%',
+                                    funnelAlign: 'left',
+                                    max: 1548
+                                }
+                            }
+                        },
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'总数',
+                        type:'pie',
+                        radius : '55%',//饼图的半径大小
+                        center: ['50%', '60%'],//饼图的位置
+                        data:jsons
+                    }
+                ]
+            }; 
+        echartsPie = echarts.init(document.getElementById('main'));
+        // 使用刚指定的配置项和数据显示图表。
+        echartsPie.setOption(options);
+    </script>
+ <div id="today" style="width: 600px;height:400px;float: right;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var echartsPie;
+   		
+
+        var json = [
+                {value:{{today_len.wechat_today}},name:'WeChat'},
+                {value:{{today_len.deepweb_today}},name:'暗网'},
+                {value:{{today_len.cve_today}},name:'CVE'},
+                {value:{{today_len.anquanke_today}},name:'安全客'},
+                {value:{{today_len.seebug_today}},name:'Seebug'},
+                ];
+        var option = {
+                title : {
+                    text: '监控数据今日统计',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} 条"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data:['WeChat','暗网','CVE','安全客','Seebug']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {
+                            show: true, 
+                            type: ['pie', 'funnel'],
+                            option: {
+                                funnel: {
+                                    x: '25%',
+                                    width: '50%',
+                                    funnelAlign: 'left',
+                                    max: 1548
+                                }
+                            }
+                        },
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'总数',
+                        type:'pie',
+                        radius : '55%',//饼图的半径大小
+                        center: ['50%', '60%'],//饼图的位置
+                        data:json
+                    }
+                ]
+            }; 
+        echartsPie = echarts.init(document.getElementById('today'));
+        // 使用刚指定的配置项和数据显示图表。
+        echartsPie.setOption(option);
+    </script>
+{% endblock%}

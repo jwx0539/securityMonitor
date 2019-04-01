@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>Seebug</legend>
+</fieldset>
+<div class="layui-tab">
+  <ul class="layui-tab-title">
+    <li class="layui-this">今日推送</li>
+    <li>历史推送</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">
+       <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>来源</th>
+        <th>预警链接</th>
+        <th>预警内容</th>
+      </tr> 
+    </thead>
+    <tbody>
+      {% for seebug in seebugs %}
+     <tr>
+       <td>{{ seebug.time}}</td>
+       <td>{{ seebug.from}}</td>
+       <td>{{ seebug.link}}</td>
+       <td>{{ seebug.content}}</td>
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+    </div>
+    <div class="layui-tab-item">
+       <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>来源</th>
+        <th>预警链接</th>
+        <th>预警内容</th>
+      </tr> 
+    </thead>
+    <tbody>
+      {% for all_seebug in all_seebugs %}
+     <tr>
+       <td>{{ all_seebug.time}}</td>
+       <td>{{ all_seebug.from}}</td>
+       <td>{{ all_seebug.link}}</td>
+       <td>{{ all_seebug.content}}</td>
+     </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
